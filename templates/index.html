@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Stock Data Visualization</title>
+</head>
+
+<body>
+    <h1>Stock Data Visualization</h1>
+    <form action="/generate_graph" method="post">
+        <label for="symbol">Stock Symbol:</label>
+        <input type="text" id="symbol" name="symbol" required><br><br>
+
+        <label for="chart_type">Chart Type:</label>
+        <select id="chart_type" name="chart_type">
+            <option value="line">1- Line Chart</option>
+            <option value="bar">2- Bar Chart</option>
+        </select><br><br>
+
+        <label for="time_series">Time Series:</label>
+        <select id="time_series" name="time_series">
+            <option value="TIME_SERIES_INTRADAY">1- Intraday</option>
+            <option value="TIME_SERIES_DAILY">2- Daily</option>
+            <option value="TIME_SERIES_WEEKLY">3- Weekly</option>
+            <option value="TIME_SERIES_MONTHLY">4- Monthly</option>
+        </select><br><br>
+
+        <label for="start_date">Start Date:</label>
+        <input type="date" id="start_date" name="start_date" required><br><br>
+
+        <label for="end_date">End Date:</label>
+        <input type="date" id="end_date" name="end_date" required><br><br>
+
+        <input type="submit" value="Generate Graph"><br><br>
+        <div>
+            {% if chart_svg %}
+                {{ chart_svg|safe }}
+            {% else %}
+                <p>No chart</p>
+            {% endif %}
+        </div>
+    </form>
+</body>
+
+</html>
